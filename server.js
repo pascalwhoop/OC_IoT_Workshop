@@ -1,89 +1,66 @@
-//setup Dependencies
-var connect = require('connect')
-    , express = require('express')
-    , io = require('socket.io')
-    , port = (process.env.PORT || 8081);
+var express = require('express');
+var app = express();
 
-//Setup Express
-var server = express.createServer();
-server.configure(function(){
-    server.set('views', __dirname + '/views');
-    server.set('view options', { layout: false });
-    server.use(connect.bodyParser());
-    server.use(express.cookieParser());
-    server.use(express.session({ secret: "shhhhhhhhh!"}));
-    server.use(connect.static(__dirname + '/static'));
-    server.use(server.router);
+/*app.get('/allo', function(req, res){
+ res.send('Hello World');
+ });*/
+
+//to be able to extract the javascript object from the body of a request
+app.use(express.bodyParser());
+
+//host our workshop application as well as its static content
+app.use('/', express.static(__dirname + '/'));
+app.use('/static/app/bower_components/', express.static(__dirname + '/static/bower_components'));
+
+
+//every user in the workshop calls this once he calls the website
+app.post('/api/user/:username', function (req, res) {
+    var username = req.params.username;
+    console.log("user " + username + " joined the workshop");
+    userRequests[username] = {
+        speed: 0,
+        theory: 0
+    }
+    res.send(userRequests[username]);
 });
 
-//setup the errors
-server.error(function(err, req, res, next){
-    if (err instanceof NotFound) {
-        res.render('404.jade', { locals: { 
-                  title : '404 - Not Found'
-                 ,description: ''
-                 ,author: ''
-                 ,analyticssiteid: 'XXXXXXX' 
-                },status: 404 });
-    } else {
-        res.render('500.jade', { locals: { 
-                  title : 'The Server Encountered an Error'
-                 ,description: ''
-                 ,author: ''
-                 ,analyticssiteid: 'XXXXXXX'
-                 ,error: err 
-                },status: 500 });
+// our API for controlling the lights. we take the user requests here
+
+app.put('/api/user/:username/speed/:speed', function (req, res) {
+    var username = req.params.username;
+    var speed = req.params.speed;
+
+    console.log("user " + username + " wants speed " + speed);
+    if (speed == 1 || speed == 0 || speed == -1) {
+        userRequests[username].speed = speed;
+        res.send(userRequests[username]);
     }
 });
-server.listen( port);
 
-//Setup Socket.IO
-var io = io.listen(server);
-io.sockets.on('connection', function(socket){
-  console.log('Client Connected');
-  socket.on('message', function(data){
-    socket.broadcast.emit('server_message',data);
-    socket.emit('server_message',data);
-  });
-  socket.on('disconnect', function(){
-    console.log('Client Disconnected.');
-  });
+
+app.put('/api/user/:username/theory/:theory', function (req, res) {
+    var username = req.params.username;
+    var theory = req.params.theory;
+
+    console.log("user " + username + " wants theory " + theory);
+
+    if (theory == 1 || theory == 0 || theory == -1) {
+        userRequests[username].theory = theory;
+        res.send(userRequests[username]);
+    }
+})
+
+
+// start the server and listen to the port supplied
+var server = app.listen(8080, function () {
+    console.log('Listening on port %d', server.address().port);
 });
 
+var userRequests = {};
 
-///////////////////////////////////////////
-//              Routes                   //
-///////////////////////////////////////////
-
-/////// ADD ALL YOUR ROUTES HERE  /////////
-
-server.get('/', function(req,res){
-  res.render('index.jade', {
-    locals : { 
-              title : 'Your Page Title'
-             ,description: 'Your Page Description'
-             ,author: 'Your Name'
-             ,analyticssiteid: 'XXXXXXX' 
-            }
-  });
-});
+//  Blue ==     46920
+//  red ==      65280
+//  yellow ==   12750
+//  green ==    36210
 
 
-//A Route for Creating a 500 Error (Useful to keep around)
-server.get('/500', function(req, res){
-    throw new Error('This is a 500 Error');
-});
-
-//The 404 Route (ALWAYS Keep this as the last route)
-server.get('/*', function(req, res){
-    throw new NotFound;
-});
-
-function NotFound(msg){
-    this.name = 'NotFound';
-    Error.call(this, msg);
-    Error.captureStackTrace(this, arguments.callee);
-}
-
-
-console.log('Listening on http://0.0.0.0:' + port );

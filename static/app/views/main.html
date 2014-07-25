@@ -1,0 +1,33 @@
+<div class="fade-animation-double-container" style="height: 400px;">
+    <div class="jumbotron fade-animation-double" ng-if="!hasGotIt" id="welcome-banner" style="width: 100%">
+        <h1>Welcome</h1>
+
+        <p>This is our workshop system. Please feel free to check everything out!</p>
+        <p>If you want to start live rating the workshop, please provide a username after clicking the "Got it!" button</p>
+        <button type="button" class="btn btn-info" ng-click="gotIt()">Got it!</button>
+    </div>
+
+    <div id="enter-name-dialog" ng-if="hasGotIt && !isUsernameSet" class="fade-animation-double">
+
+        <form class="form-horizontal" role="form">
+            <div class="form-group" ng-class="{'has-success' : validateUsername(), 'has-error' : !validateUsername()}">
+                <label for="nameField" class="col-sm-3 control-label">Please choose a username:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="nameField" placeholder="e.g. foobar2000" ng-model="participant.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-success" ng-click="saveName(participant.name)" ng-disabled="!validateUsername()">OK!</button>
+                </div>
+            </div>
+
+        </form>
+        </p>
+    </div>
+
+
+</div>
+
+

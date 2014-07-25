@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'RotisSemiSerif';
+    src: url('RotisSemiSerif.eot?') format('eot'), url('RotisSemiSerif.woff') format('woff'), url('RotisSemiSerif.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'rotissemisans';
+    src: url('rotissemisans.eot?') format('eot'), url('rotissemisans.woff') format('woff'), url('rotissemisans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'rotissemisansitalic';
+    src: url('rotissemisansitalic.eot?') format('eot'), url('rotissemisansitalic.woff') format('woff'), url('rotissemisansitalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+body {
+    font-family: "rotissemisans", sans-serif;
+    background: #fff url(OC_Brushes.svg);
+    background-repeat: no-repeat;
+    background-size: auto 80%;
+    -webkit-background-size: auto 80%;
+    background-position: right center;
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+
+}
+
+html {
+    height: 100%;
+    width: 100%;
+
+}
+
+#copyright {
+    padding: 5px;
+    font-family: "Arial", sans-serif;
+    font-size: 12px;
+    color: #000;
+    font-weight: 100;
+}
+
+/* OC Logo */
+
+#oc-logo {
+    height: 50px;
+    display: block;
+    margin: 0 auto 0 auto;
+}
+
+table tr td {
+    text-align: center;
+}
+
+span.caption {
+    color: #fff;
+    font-family: "rotissemisans", serif;
+    font-size: 60px;
+    line-height: 1.2em;
+    padding: 0 15px;
+    background-color: #CCCCCC;
+    margin-right: 20px;
+}
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "RotisSemiSerif", serif;
+}

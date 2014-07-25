@@ -1,0 +1,4 @@
+# Tasks for Chapter 1
+
+1. foo
+2. bar
