@@ -2,36 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9943c203-c371-47c5-b26c-6b754f1400e5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/app/views/hints.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/app/scripts/controllers/pageContainer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/app/views/slides.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/app/views/tasks.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/initproject.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/js/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/stub.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/404.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/500.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/views/layout.jade" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/static/css/style.css" afterPath="$PROJECT_DIR$/developerNotes.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OC-IoT-Workshop.iml" afterPath="$PROJECT_DIR$/OC-IoT-Workshop.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/app/scripts/controllers/main.js" afterPath="$PROJECT_DIR$/static/app/scripts/controllers/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="OC-IoT-Workshop.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1406285561843" ignored="false" />
-    <file path="/server.js" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1406317633662" ignored="false" />
+    <file path="/server.js" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1406392507001" ignored="false" />
     <file path="/index.html" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1406313186788" ignored="false" />
     <file path="/app.js" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1406282387603" ignored="false" />
     <file path="/Gruntfile.js" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1403946199046" ignored="false" />
     <file path="/main.html" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1406313264293" ignored="false" />
     <file path="/oc_style.css" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1406290308012" ignored="false" />
-    <file path="/main.js" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1406317502321" ignored="false" />
+    <file path="/main.js" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1406389893423" ignored="false" />
     <file path="/localstorageservice.js" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1403961609180" ignored="false" />
     <file path="/displayservice.js" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1403961690373" ignored="false" />
     <file path="/.jshintrc" changelist="9943c203-c371-47c5-b26c-6b754f1400e5" time="1403962390715" ignored="false" />
@@ -148,7 +132,7 @@
       <file leaf-file-name="server.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="0" selection-start="1851" selection-end="1851" vertical-scroll-proportion="0.8951049">
+            <state line="40" column="53" selection-start="1273" selection-end="1273" vertical-scroll-proportion="-1.701049">
               <folding />
             </state>
           </provider>
@@ -196,7 +180,7 @@
       <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/app/scripts/controllers/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="69" selection-start="634" selection-end="634" vertical-scroll-proportion="0.0">
+            <state line="54" column="67" selection-start="1837" selection-end="1837" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -579,6 +563,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -593,12 +578,11 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13820705" sideWeight="0.3409091" order="0" side_tool="true" content_ui="combo" x="830" y="81" width="259" height="880" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -666,7 +650,7 @@
           <line>29</line>
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="12" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -773,14 +757,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/app/scripts/controllers/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="69" selection-start="634" selection-end="634" vertical-scroll-proportion="0.0">
+        <state line="54" column="67" selection-start="1837" selection-end="1837" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="0" selection-start="1851" selection-end="1851" vertical-scroll-proportion="0.8951049">
+        <state line="40" column="53" selection-start="1273" selection-end="1273" vertical-scroll-proportion="-1.701049">
           <folding />
         </state>
       </provider>

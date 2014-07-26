@@ -15,15 +15,19 @@ angular.module('IoTWorkshopWebApp')
 
         $scope.participant.name = localStorageService.getLocalStorageItem('participantName');
 
+        //we save the entered username to our localStorage and inform the server about the added user
         $scope.saveName = function(name){
             localStorageService.setLocalStorageItem('participantName', name);
 
-            $http.post("/api/user/" + name).success(function(result){
-                console.log(result);
-                //TODO should be a nicer way
-                location.reload();
-            })
+            location.reload();
         };
+
+        //we register the user with the server
+        $scope.registerUserWithServer = function(){
+            $http.post("/api/user/" + $scope.participant.name).success(function(result){
+                console.log(result);
+            })
+        }
 
         $scope.validateUsername = function () {
             var patt = /^([a-z|0-9]){1,20}$/i;
@@ -43,6 +47,11 @@ angular.module('IoTWorkshopWebApp')
             localStorageService.setLocalStorageItem('hasGotIt', true);
             $scope.hasGotIt = true;
         };
+
+        //we notify the server each time a user opens our page that he part takes. the server might already know or he wont so we add the user on the server side.
+        if($scope.participant.name != undefined && $scope.participant.name != null && $scope.participant.name != ""){
+            $scope.registerUserWithServer();
+        }
 
 
   });
