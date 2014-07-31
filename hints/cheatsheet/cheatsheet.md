@@ -10,6 +10,7 @@
 ## Git [git]
 
 * show all git branches: `git fetch` , `git branch -v -a`
+* checkout a remote branch	`git checkout sampleBranchName`
 
 ## SSH [ssh]
 

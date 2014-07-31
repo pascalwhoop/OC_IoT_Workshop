@@ -35,7 +35,7 @@ body {
 
 .reveal {
     font-family: "rotissemisans", sans-serif;
-    font-size: 36px;
+    font-size: 50px;
     color: #2C2C2C;
     font-weight: 100;
     background-image: url(OC_Brushes.svg);
@@ -43,6 +43,32 @@ body {
     background-size: 30%;
     background-position: right center;
 }
+
+/*fixing the font size depending on the size of the display. this is adjusted to a reveal.js setting of width: 1920 height 1080*/
+@media screen and (max-width: 480px) {
+    .reveal{
+        font-size: 100px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .reveal{
+        font-size: 90px;
+    }
+}
+
+@media screen and (max-width: 980) {
+    .reveal{
+        font-size: 80px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .reveal{
+        font-size: 70px;
+    }
+}
+
 
 
 #logo {
@@ -78,7 +104,7 @@ body {
 ul li {
     text-align: left;
     list-style: square;
-	list-style-image:url(listegross.png);
+    list-style-image:url(listegross.png);
 }
 
 .slides ul li{
@@ -160,10 +186,6 @@ span.caption{
     transition: all .2s linear;
 }
 
-.reveal section img.with-heading{
-    max-width: 75%;
-    max-height: 75%;
-}
 
 
 

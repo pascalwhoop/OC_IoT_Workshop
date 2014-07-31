@@ -22,7 +22,6 @@
     <![endif]-->
 
 
-    <link rel="stylesheet" href="chap1.css"/>
 </head>
 
 <body>
@@ -68,13 +67,13 @@
     <section>
         <h2>Raspberry Pi</h2>
 
-        <img src="images/pi%20image.jpeg" alt="" class="with-heading"/>
+        <img src="images/pi%20image.jpeg" alt=""/>
     </section>
 
     <section><h3>Pi Zubehör</h3><br>
 
         <!-- Raspberry Pi fur Einsteiger - Matt Richardson -->
-        <img src="images/pi.zubehoer.png" alt="" class="with-heading"/>
+        <img src="images/pi.zubehoer.png" alt=""/>
 
     </section>
 
@@ -113,7 +112,7 @@
         <h3>GPIO Belegung</h3>
         <!-- source: Durchstarten mit Raspberry Pi - Erik Bartmann -->
 
-        <img src="images/pi.belegung.gpio.png" alt="" class="with-heading"/>
+        <img src="images/pi.belegung.gpio.png" alt=""/>
 
     </section>
 
@@ -131,7 +130,7 @@
         </script>
     </section>
 
-    <section data-markdown>
+    <section data-markdown data-state="alert">
         <script type="text/template">
             ### Beschränkungen
 
@@ -240,7 +239,7 @@
 <section>
     <h2>Demo</h2>
 
-    <img src="images/Ampelschaltung.JPG" alt="" class="with-heading"/>
+    <img src="images/Ampelschaltung.JPG" alt="" class=""/>
 
 
     <!--
@@ -321,44 +320,7 @@
 <script src="../common/js/head.min.js"></script>
 <script src="../common/js/reveal.js"></script>
 
-<script>
-
-    Reveal.initialize({
-        controls: true,
-        progress: true,
-        history: true,
-        center: true,
-
-        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-        // Optional libraries used to extend on reveal.js
-        dependencies: [
-            { src: '../common/js/classList.js', condition: function () {
-                return !document.body.classList;
-            } },
-            { src: '../common/js/markdown/marked.js', condition: function () {
-                return !!document.querySelector('[data-markdown]');
-            } },
-            { src: '../common/js/markdown/markdown.js', condition: function () {
-                return !!document.querySelector('[data-markdown]');
-            } },
-            { src: '../common/js/highlight/highlight.js', async: true, callback: function () {
-                hljs.initHighlightingOnLoad();
-            } },
-            { src: '../common/js/zoom-js/zoom.js', async: true, condition: function () {
-                return !!document.body.classList;
-            } },
-            { src: '../common/js/notes/notes.js', async: true, condition: function () {
-                return !!document.body.classList;
-            } }/*,
-             { src: '../common/js/remotes/remotes.js', async: true, condition: function () {
-             return !!document.body.classList;
-             } }*/
-
-        ]
-    });
-
-</script>
+<script type="text/javascript" src="../common/revealjsConfig.js"></script>
 
 </body>
 </html>
