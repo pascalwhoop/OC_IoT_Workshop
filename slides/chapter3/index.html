@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>IoT Workshop OC</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../common/css/reveal.css">
+    <link rel="stylesheet" href="../common/css/style.css">
+    <!--    <link rel="stylesheet" href="../common/css/print/pdf.css"/>-->
+
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../common/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+
+    <link rel="stylesheet" href="chap1.css"/>
+</head>
+
+<body>
+
+<div id="logo">
+    <p align="center">
+        <img src="../common/css/Opitz_Logo_V1.svg" alt="Logo" id="logo_img">
+    </p>
+</div>
+
+<div id="copyright">
+    <p align="center">
+        &copy; 2014 OPITZ CONSULTING Deutschland GmbH
+    </p>
+</div>
+
+<div class="reveal">
+
+
+    <div class="slides">
+
+        <section>
+            <h1>Section 3</h1>
+
+            <img src="../common/css/imagebilder.png" alt="Imagebilder">
+
+            <p>
+                Java Native Interfaces
+            </p>
+        </section>
+
+
+        <section data-markdown>
+            <script type="text/template">
+                ## Problem
+
+                Hardwarenahe Programmierung in C, abstraktere Business Logik am besten in Java.
+
+                Bietet sich insbesondere an, da in Java BPM Frameworks, REST Services, DB Anbindung usw. intuitiv und
+                mächtig ist. Entwicklungstechniken hier sehr ausgereift
+            </script>
+        </section>
+
+        <section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## Java Native Interaces
+
+                    * Ermöglichen den Aufruf nativer Funktionen durch Java z.B. für direkte Hardwareinteraktion
+                    * Auch nützlich bei Real-Time Berechnungen oder in Situationen, wenn nativer Code performanter ist
+                    als Java Code
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Probleme mit JNI
+
+                    * Kein Garbage Collection auf nativer Seite, muss selber freigegeben werden
+                    * Verlust der Plattformunabhängigkeit
+                    * Debugging sehr schwierig
+
+                </script>
+            </section>
+        </section>
+
+        <section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## JNI Beispiele
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Loading native libraries in Java
+
+                    ```java
+    static {
+        try {
+            System.setProperty("java.library.path", "/usr/local/lib");
+            Field fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
+            fieldSysPath.setAccessible(true);
+            fieldSysPath.set(null, null);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            System.out.println("Loading Native Libraries:: Path: " + System.getProperty("java.library.path"));
+            //loading a library, there are two ways. but it only gets loaded once so doesnt matter if done twice here
+            System.loadLibrary("RCSwitchAdapter");
+            System.load("/usr/local/lib/libRCSwitchAdapter.so");
+            System.out.println("Loading Native Libraries:: loading librarys worked");
+            workingNativeCode = true;
+        } catch (UnsatisfiedLinkError e) {
+            e.printStackTrace();
+        }
+
+        }
+    }
+                    ```
+                </script>
+            </section>
+
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Native Method stub in Java
+
+                    ```java
+                    //note the missing method body
+                    public native void switchOn(String group, String unit);
+                    ```
+                </script>
+            </section>
+
+
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Getting a String as a Parameter
+
+                    ```cpp
+    extern "C"
+    JNIEXPORT void JNICALL Java_com_opitz_jni_NativeRCSwitchAdapter_switchOn(JNIEnv * env, jstring javaString){
+        //Get the native string from javaString
+        //instead using jstring where char* is expected could crash the JVM
+        const char *nativeString = env->GetStringUTFChars(javaString, 0);
+
+        //Do something with the nativeString
+
+        //release UTF ressources! important
+        env->ReleaseStringUTFChars(javaString, nativeString);
+    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Getting a non-constant string from the parameters
+
+                    ```cpp
+    //extracting the parameter char arrays from the JNIEnv
+    const char *csGroup = env->GetStringUTFChars(jsGroup, 0);
+    const char *csChannel = env->GetStringUTFChars(jsChannel, 0);
+
+    //creating non-constant char arrays and copying the values
+    char sGroup[6];
+    char sChannel[6];
+
+    for (int i = 0; i<5; i++) {
+        sGroup[i] = csGroup[i];
+        sChannel[i] = csChannel[i];
+    }
+
+    // C string termination
+    sGroup[5] = '\0';
+    sChannel[5] = '\0';
+                    ```
+                </script>
+            </section>
+        </section>
+
+        <section>
+
+            <section>
+                <h2>Java Build und Native Code Build mit JNI</h2>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Java build and creation of c header files
+
+                    ```bash
+                    #compile java and make header file
+                    echo -n "compiling java and creating c++ header file..."
+                    javac com/opitz/jni/NativeRCSwitchAdapter.java
+                    echo "..."
+                    javah com.opitz.jni.NativeRCSwitchAdapter
+                    echo "done"
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### compiling C++ code if using JNI
+
+                    ```bash
+                    #build libWiringPi.so
+                    echo -n "building c++ library...."
+                    g++ -c -I/usr/jdk1.8.0/include -I/usr/jdk1.8.0/include/linux com_opitz_jni_NativeRCSwitchAdapter.cpp RCSwitch.cpp
+                    g++ -shared  /usr/local/lib/libwiringPiDev.so /usr/local/lib/libwiringPi.so  com_opitz_jni_NativeRCSwitchAdapter.o RCSwitch.o  -o libRCSwitchAdapter.so
+                    echo -n "done"
+                    ```
+                </script>
+            </section>
+
+
+
+        </section>
+
+
+    </div>
+
+</div>
+
+
+<script src="../common/js/head.min.js"></script>
+<script src="../common/js/reveal.js"></script>
+
+<script>
+
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: '../common/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../common/js/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../common/js/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../common/js/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../common/js/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: '../common/js/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }/*,
+             { src: '../common/js/remotes/remotes.js', async: true, condition: function () {
+             return !!document.body.classList;
+             } }*/
+
+        ]
+    });
+
+</script>
+
+</body>
+</html>

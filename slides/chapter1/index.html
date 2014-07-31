@@ -4,212 +4,148 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Präsentationstitel</title>
+    <title>IoT Workshop OC</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-    <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../common/css/reveal.css">
+    <link rel="stylesheet" href="../common/css/style.css">
 
     <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="css/zenburn.css">
+    <link rel="stylesheet" href="../common/css/zenburn.css">
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <![endif]-->
+
+
+    <link rel="stylesheet" href="chap1.css"/>
 </head>
 
 <body>
 
 <div id="logo">
     <p align="center">
-        <img src="css/Opitz_Logo_V1.svg" alt="Logo" width="154" height="154">
+        <img src="../common/css/Opitz_Logo_V1.svg" alt="Logo" id="logo_img">
     </p>
 </div>
 
 <div id="copyright">
     <p align="center">
-        &copy; 2013 OPITZ CONSULTING Deutschland GmbH
+        &copy; 2014 OPITZ CONSULTING Deutschland GmbH
     </p>
 </div>
 
 <div class="reveal">
 
-    <div class="slides">
 
-        <section>
-            <h1>Präsentationstitel</h1>
-			
-            <img src="css/imagebilder.png" alt="Imagebilder">
-            
-            <p>
-                Erika Mustermann &amp; Max Mustermann
-            </p>
-        </section>
+<div class="slides">
 
-        <section>
-            <h1><span class="caption">1</span>Lorem ipsum</h1>
+<section>
+    <h1>Section 1</h1>
 
-            <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore.
-            </p>
-        </section>
+    <img src="../common/css/imagebilder.png" alt="Imagebilder">
 
-        <section>
+    <p>
+        Einführung Prototyp
+    </p>
+</section>
 
-            <section>
-                <h1>Untergeordnete Folien</h1>
+<section data-markdown>
+    <script type="text/template">
+        ## Idee
 
-                <p>
-                    Folien könnnen untergeordnet werden
-                    um z. B. tiefer ins Thema einzusteigen.
-                </p>
-            </section>
-
-            <section>
-                <h1>Folien-Level 1</h1>
-
-                <p>zum navigieren einfach 'oben' oder 'unten' klicken.</p>
-            </section>
-
-            <section>
-                <h1>Folien-Level 2</h1>
-
-                <p>und so weiter!</p>
-            </section>
-
-        </section>
-
-        <section>
-            <h1>Hier eine Auflistung:</h1>
-            <ul>
-                <li class="fragment">Ein</li>
-                <li class="fragment">Punkt</li>
-                <li class="fragment">nach</li>
-                <li class="fragment">dem</li>
-                <li class="fragment">anderen</li>
-            </ul>
-        </section>
-
-        <section>
-            <section data-state="red">
-                <h1>Powerpoint</h1>
-
-                <p>
-                    Wer sieht da nicht rot?
-                </p>
-            </section>
-
-            <section data-state="yellow">
-                <h1>Aber die Opitz-Farbwelt kennt auch:<br>
-                    Gelb,</h1>
-            </section>
-
-            <section data-state="blue">
-                <h1>Blau,</h1>
-            </section>
-
-            <section data-state="green">
-                <h1>Grün</h1>
-            </section>
-
-            <section data-state="black">
-                <h1>und Schwarz!</h1>
-            </section>
-
-        </section>
-
-        <section>
-            <h1>Steuern Sie mit Links zwischen den einzelnen Folien</h1>
-
-            <p>
-                Dies sieht dann so aus: <a href="#/2/3">Link</a>
-            </p>
-        </section>
-
-        <section>
-            <h1>Präsentationen leben von Bildern und Medien</h1>
-
-            <p>
-                <img src="images/beispiel_grafik.jpg" alt="Platzhalterbild">
-            </p>
-        </section>
-
-        <section>
-            <h1>Hier ein paar Highlights</h1>
-
-            <p>Klicken Sie sich einfach durch:</p>
-
-            <p class="fragment grow">wachsen</p>
-
-            <p class="fragment shrink">schrumpfen</p>
-
-            <p class="fragment roll-in">Roll-in</p>
-
-            <p class="fragment fade-out">Fade-out</p>
-
-            <p class="fragment highlight-red">Rot</p>
-
-            <p class="fragment highlight-green">Grün</p>
-
-            <p class="fragment highlight-blue">Blau</p>
-        </section>
-
-        <section>
-            <section>
-                <p>Webcam oder externe Kamera Zugriff via HTML5</p>
-
-                <p>Ideal für Demozwecke</p>
-            </section>
-            <section>
-                <video autoplay id="webcamvideo"></video>
-
-                <!--Webcam access-->
-                <script type="text/javascript" src="js/cameraAccess.js"></script>
-            </section>
-        </section>
-
-        <section>
-            <section><h1>Überschriftenvorlage</h1></section>
-            <section><h2>H2 Überschrift</h2></section>
-            <section><h3>H3 Überschrift</h3></section>
-        </section>
+        * Automatisierung der Beleuchtung in Studenten WG's
+        * Speziell Licht in Gemeinschaftsräumen sowie privaten Räumen anhand von Events ein/ausschalten
+        * Events in Form von Bewohner kommt an / verlässt das Gebäude
+    </script>
+</section>
 
 
-        <section>
-            <h1>Käffchen?</h1>
+<section>
+    <section data-markdown>
+        <script type="text/template">
+            ## Konzept
 
-            <p>Wenn Sie eine kleine Pause einlegen wollen, reicht es die Taste 'b' zu drücken und die Präsentation färbt
-                sich schwarz.
-            </p>
-        </section>
+            * Erkennung von Smartphones im WLAN
+            * Zuordnung von Smartphones zu Benutzern
+            * Zuordnung von Geräten zu Benutzern
+            * Schaltung der Geräte in Abhängigkeit von vorgegeben Regeln (z.B. Benutzerpräsenz, Wetter, Uhrzeit, ...)
+        </script>
+    </section>
 
-        <section>
-            <h1>Vielen Dank <br>
-                für Ihre Aufmerksamkeit!</h1>
-            <br>
-            <br>
+    <section data-markdown>
+        <script type="text/template">
+            ### Beispiel
 
-            <p>
-                <b>Erika Mustermann:</b><br>
-                erika.mustermann@opitz-consulting.com<br><br>
-            </p>
+            * Lichter im Gemeinschaftsräumen & privaten Räumen im System integriert
+            * Person A ist im Gebäude &#8594; Gemeinschaftsraum ist beleuchtet
+            * Person B betritt Gebäude &#8594; Zimmer Person B wird eingeschaltet
+            * Personen A & B verlassen gemeinsam das Gebäude &#8594; Gemeinschaftsraum, Zimmer A & B wird nicht mehr
+            beleuchtet
+            * Person A kommt zurück, es ist 12:00 Mittag und hell &#8594; Lichter bleiben ausgeschaltet
+        </script>
+    </section>
+</section>
 
-            <p>
-                <b>Max Mustermann:</b><br>
-                max.mustermann@opitz-consulting.com<br>
-            </p>
-        </section>
+<section>
+    <section data-markdown>
+        <script type="text/template">
+            ## Umsetzung
 
-    </div>
+            * Spring Middleware mit Benutzer & Geräteverwaltung
+            * Mobile Hybrid Webapp Frontend App zur manuellen Steuerung & Verwaltung
+            * 433mhz Funksteckdosen als primitive Geräte welche zu schalten sind
+            * Philips Hue Lampen mit RGB Farbspektrum als "intelligentere Dinge"
+        </script>
+    </section>
+
+    <section data-markdown>
+        <script type="text/template">
+            ### Aktuelle TODOs
+            *(nicht mehr im Rahmen des Protypen)*
+
+            * Anbindung an Wetterdienst um Helligkeit vom Sonnenlicht mit einzubeziehen
+            * Weitere Sensorik wie Helligkeitsmesser, Bewegungsmelder
+            * Weitere Gerätetypen wie Heizung, Multimedia
+        </script>
+    </section>
+</section>
+
+<section>
+    <section data-markdown>
+        <script type="text/template">
+            ## Demo
+
+            <!--TODO URL angeben-->
+            <!--TODO  -->
+        </script>
+    </section>
+
+    <section data-markdown>
+        <script type="text/template">
+            ### Selber Probieren
+
+            * Jeder kann mittels Smartphone einen Benutzernamen hinzufügen
+            * Steuerung der eigenen Lampe (oder der anderer)
+            * URL für MobileApp: `/prototype/mobile`
+
+
+            <!--TODO URL angeben-->
+            <!--TODO  -->
+        </script>
+    </section>
+</section>
+
+
+</div>
 
 </div>
 
 
-<script src="js/head.min.js"></script>
-<script src="js/reveal.js"></script>
+<script src="../common/js/head.min.js"></script>
+<script src="../common/js/reveal.js"></script>
 
 <script>
 
@@ -223,27 +159,27 @@
 
         // Optional libraries used to extend on reveal.js
         dependencies: [
-            { src: 'js/classList.js', condition: function () {
+            { src: '../common/js/classList.js', condition: function () {
                 return !document.body.classList;
             } },
-            { src: 'js/markdown/showdown.js', condition: function () {
+            { src: '../common/js/markdown/marked.js', condition: function () {
                 return !!document.querySelector('[data-markdown]');
             } },
-            { src: 'js/markdown/markdown.js', condition: function () {
+            { src: '../common/js/markdown/markdown.js', condition: function () {
                 return !!document.querySelector('[data-markdown]');
             } },
-            { src: 'js/highlight/highlight.js', async: true, callback: function () {
+            { src: '../common/js/highlight/highlight.js', async: true, callback: function () {
                 hljs.initHighlightingOnLoad();
             } },
-            { src: 'js/zoom-js/zoom.js', async: true, condition: function () {
+            { src: '../common/js/zoom-js/zoom.js', async: true, condition: function () {
                 return !!document.body.classList;
             } },
-            { src: 'js/notes/notes.js', async: true, condition: function () {
+            { src: '../common/js/notes/notes.js', async: true, condition: function () {
                 return !!document.body.classList;
-            } },
-            { src: 'js/remotes/remotes.js', async: true, condition: function () {
-                return !!document.body.classList;
-            } }
+            } }/*,
+             { src: '../common/js/remotes/remotes.js', async: true, condition: function () {
+             return !!document.body.classList;
+             } }*/
 
         ]
     });

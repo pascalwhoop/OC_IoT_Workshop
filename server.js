@@ -1,12 +1,16 @@
-var express = require('express');
+//dependencies
+var express =       require('express');
+
+
+/* ########     app creationand configuration      ########*/
 var app = express();
+//to be able to extract the javascript object from the body of a request
+app.use(express.bodyParser());
+
 
 /*app.get('/allo', function(req, res){
  res.send('Hello World');
  });*/
-
-//to be able to extract the javascript object from the body of a request
-app.use(express.bodyParser());
 
 //host our workshop application as well as its static content
 app.use('/', express.static(__dirname + '/'));
