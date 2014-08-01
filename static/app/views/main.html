@@ -3,7 +3,9 @@
         <h1>Welcome</h1>
 
         <p>This is our workshop system. Please feel free to check everything out!</p>
-        <p>If you want to start live rating the workshop, please provide a username after clicking the "Got it!" button</p>
+
+        <p>If you want to start live rating the workshop, please provide a username after clicking the "Got it!"
+            button</p>
         <button type="button" class="btn btn-info" ng-click="gotIt()">Got it!</button>
     </div>
 
@@ -12,19 +14,78 @@
         <form class="form-horizontal" role="form">
             <div class="form-group" ng-class="{'has-success' : validateUsername(), 'has-error' : !validateUsername()}">
                 <label for="nameField" class="col-sm-3 control-label">Please choose a username:</label>
+
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="nameField" placeholder="e.g. foobar2000" ng-model="participant.name">
+                    <input type="text" class="form-control" id="nameField" placeholder="e.g. foobar2000"
+                           ng-model="participant.name">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-success" ng-click="saveName(participant.name)" ng-disabled="!validateUsername()">OK!</button>
+                    <button type="button" class="btn btn-success" ng-click="saveName(participant.name)"
+                            ng-disabled="!validateUsername()">OK!
+                    </button>
                 </div>
             </div>
 
         </form>
         </p>
+    </div>
+
+
+    <div id="overview" ng-if="hasGotIt && isUsernameSet" class="fade-animation-double">
+
+        <h2>Ablaufsübersicht: </h2>
+
+        <table class="table table-responsive table-striped">
+
+            <tr>
+                <th>Block</th>
+                <th>Zeit</th>
+                <th>Theorie</th>
+                <th>Praxis</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>08:00 - 10:00</td>
+                <td>Einführung OC, IoT & Prototyp</td>
+                <td>Live Demo, jeder kann Lichter steuern (mit eigenem Smartphone)</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>10:00 - 11:00</td>
+                <td>Native Stack Vorstellung, Theorie zu 433Mhz Kommunikaton</td>
+                <td>SSH Verbindung zum jeweils eigenen Pi herstellen, native Libraries via shell aufrufen, eigene Lampe steuernd</td>
+            </tr>
+
+            <tr>
+                TO BE COMPLETED UPON FINISH OF WORKSHOP CREATION
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-1">
+
+        </div>
+
+        <div class="col-md-1">
+
+        </div>
+
+        <div class="col-md-5">
+
+        </div>
+
+        <div class="col-md-5">
+
+        </div>
     </div>
 
 

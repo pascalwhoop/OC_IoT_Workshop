@@ -9,7 +9,7 @@ Reveal.initialize({
     history: true,
     center: true,
 
-    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+    transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
     // Optional libraries used to extend on reveal.js
     dependencies: [

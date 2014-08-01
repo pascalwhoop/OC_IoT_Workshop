@@ -64,7 +64,7 @@
 
 /* only allow scrolling for content*/
 .page-container{
-    overflow: scroll;
+    overflow: auto;
     height: 100%;
 }
 
