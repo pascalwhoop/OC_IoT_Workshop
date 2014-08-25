@@ -2,10 +2,8 @@
     <div class="row rating-columns">
         <h2>Live workshop rating</h2>
 
-        <p>Please provide live feedback to our workshop. Every participant may give one vote concerning each of the two
-            displayed topics. The average of all votes will then be reflected by the lights placed in the room. So if 5
-            vote the workshop moves too slow and 5 vote its too fast, the lights will display the average color between
-            green and yellow.</p>
+        <p>Please provide live feedback to our workshop. Every participant may give one vote for each of the two
+            displayed criteria. The vote may be changed at any time during the workshop. The average of all votes will be reflected by two lights placed in the room.</p>
 
         <p></p>
     </div>
@@ -31,18 +29,18 @@
 
             <button type="button" class="btn btn-lg btn-default" ng-click="speed(0)">OK</button>
 
-            <button type="button" class="btn btn-lg btn-warning" ng-click="speed(-1)">
+            <button type="button" class="btn btn-lg btn-danger" ng-click="speed(-1)">
                 <span class="glyphicon glyphicon-minus"></span> slower
             </button>
 
         </div>
         <div class="col-sm-6 rating-columns">
-            <button type="button" class="btn btn-lg btn-info" ng-click="theory(1)">
+            <button type="button" class="btn btn-lg btn-info" ng-click="theory(-1)">
                 <span class="glyphicon glyphicon-plus"></span> more lessons
             </button>
             <button type="button" class="btn btn-lg btn-default" ng-click="theory(0)">OK</button>
-            <button type="button" class="btn btn-lg btn-danger" ng-click="theory(-1)">
-                <span class="glyphicon glyphicon-minus"></span> more practicing
+            <button type="button" class="btn btn-lg btn-danger" ng-click="theory(1)">
+                <span class="glyphicon glyphicon-minus"></span> fewer lessons
             </button>
 
         </div>
@@ -53,17 +51,31 @@
         <div class="col-sm-6 rating-columns">
             <h4>Color range for speed lamp</h4>
 
-            <div class="range-container speed-range">
-                <span class="pull-left range-text">faster please</span>
-                <span class="pull-right range-text">slower please</span>
+            <div class="range-container">
+                <div class="range-inner speed-range">
+                    <div class="range-inner content-saturation-overlay">
+                        <span class="pull-left range-text">faster please</span>
+                        <span class="pull-right range-text">slower please</span>
+                    </div>
+                </div>
+
             </div>
+
+
         </div>
 
         <div class="col-sm-6 rating-columns">
             <h4>Color range for content lamp</h4>
-            <div class="range-container content-range">
-                <span class="pull-left range-text">java bores me...</span>
-                <span class="pull-right range-text">let me code!</span>
+
+            <div class="range-container">
+                <div class="range-inner content-range">
+                    <div class="range-inner content-saturation-overlay">
+                        <span class="pull-left range-text">move on already!</span>
+                        <span class="pull-right range-text">I need practice</span>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>

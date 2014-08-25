@@ -15,22 +15,5 @@ angular.module('IoTWorkshopWebApp')
             $http.put("/api/user/" + $scope.participant.name + "/theory/" + theoryAmount);
         }
 
-        //old
-        $scope.faster = function () {
-            $http.put("/api/speed/increase", {"participant": $scope.participant});
-        }
-
-
-        $scope.slower = function () {
-            $http.put("/api/speed/decrease", {"participant": $scope.participant});
-        }
-
-        $scope.moreTheory = function(){
-            $http.put("/api/theory/increase", {"participant": $scope.participant});
-        }
-
-        $scope.lessTheory = function(){
-            $http.put("/api/theory/decrease", {"participant": $scope.participant});
-        }
 
     });

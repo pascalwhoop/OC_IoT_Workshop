@@ -1,5 +1,7 @@
 //dependencies
-var express =       require('express');
+var express = require('express');
+var hueControl = require('./local_modules/hueControl.js');
+var ratingLogger = require('./local_modules/ratingHistory.js');
 
 
 /* ########     app creationand configuration      ########*/
@@ -7,15 +9,18 @@ var app = express();
 //to be able to extract the javascript object from the body of a request
 app.use(express.bodyParser());
 
+//to not exit everything if an error is thrown
+process.on('uncaughtException', function(err) {
+    console.log('Caught exception: ' + err);
+});
 
-/*app.get('/allo', function(req, res){
- res.send('Hello World');
- });*/
 
 //host our workshop application as well as its static content
 app.use('/', express.static(__dirname + '/'));
 app.use('/static/app/bower_components/', express.static(__dirname + '/static/bower_components'));
 
+
+var userRequests = {};
 
 //every user in the workshop calls this once he calls the website
 app.post('/api/user/:username', function (req, res) {
@@ -23,7 +28,7 @@ app.post('/api/user/:username', function (req, res) {
 
 
     //if user does not yet exist add him
-    if(!userRequests[username]){
+    if (!userRequests[username]) {
         console.log("user " + username + " joined the workshop");
         userRequests[username] = {
             speed: 0,
@@ -43,18 +48,43 @@ app.put('/api/user/:username/speed/:speed', function (req, res) {
     if (speed == 1 || speed == 0 || speed == -1) {
 
         //add user if for some reason not yet present
-        if(!userRequests[username]){
+        if (!userRequests[username]) {
             userRequests[username] = {
                 speed: 0,
                 theory: 0
             }
         }
+
         userRequests[username].speed = speed;
         res.send(userRequests[username]);
+
+        var hue = hueControl.calcSpeedColor(userRequests);
+        var sat = hueControl.calcSaturation(userRequests, "speed");
+        hueControl.setSpeedColor(hue, sat);
+
+        //for later evaluation purposes
+        ratingLogger.logRating(userRequests, username, "speed", speed, {hue: hue, sat: sat});
+    }else{
+        res.send("Error, wrong values submitted");
     }
-    calcSpeedColor();
 
 });
+
+/*
+ var degreeMultiplicator = 181.3333;
+ var degrees = 360;
+
+ function foo() {
+
+ hueControl.setSpeedColor(Math.floor(degreeMultiplicator * degrees));
+ degrees += 5;
+
+ if (degrees > 360) {
+ degrees -= 360;
+ }
+ }
+ setInterval(foo, 301);
+ */
 
 
 app.put('/api/user/:username/theory/:theory', function (req, res) {
@@ -66,7 +96,7 @@ app.put('/api/user/:username/theory/:theory', function (req, res) {
     if (theory == 1 || theory == 0 || theory == -1) {
 
         //add user if for some reason not yet present
-        if(!userRequests[username]){
+        if (!userRequests[username]) {
             userRequests[username] = {
                 speed: 0,
                 theory: 0
@@ -75,8 +105,19 @@ app.put('/api/user/:username/theory/:theory', function (req, res) {
 
         userRequests[username].theory = theory;
         res.send(userRequests[username]);
+
+        var hue = hueControl.calcTheoryColor(userRequests);
+        var sat = hueControl.calcSaturation(userRequests, "theory");
+        hueControl.setTheoryColor(hue, sat);
+
+        //for later evaluation purposes
+        ratingLogger.logRating(userRequests, username, "theory", theory, {hue: hue, sat: sat});
+    }else{
+        res.send("Error, wrong values submitted");
     }
-    calcTheoryColor()
+
+
+
 })
 
 
@@ -85,57 +126,6 @@ var server = app.listen(8080, function () {
     console.log('Listening on port %d', server.address().port);
 });
 
-var userRequests = {};
 
 
-var calcTheoryColor = function () {
-    var blue = 46920;
-    var red = 65280;
-    var span = red - blue;
-
-    //we use the count to determine how many users we have in the workshop
-    var count = 0;
-    //the speedSum determines what color the lamp should display
-    var speedSum = 0;
-    for (var user in userRequests) {
-        if (userRequests.hasOwnProperty(user)) {
-            count++;
-            speedSum += userRequests[user].theory;
-        }
-    }
-    //if we have 10 participants the range of values for speedSum is [-10 ; 10] so 21 possible values and therefore 20 possible steps.
-    var stepSize = Math.floor(span / (count * 2));
-
-    // this value will be the amount of steps to take from the "bottom" which would be 12750 or yellow color code
-    // if count is 10 and speedSum is -4 (meaning 4 more clicked slower than faster) the new value would be 6 meaning 6*stepSize + yellow = color to display
-    var stepsToTake = speedSum + count;
-
-    console.log("Lamp color code for Content will be: " + '' +(stepsToTake * stepSize + blue));
-}
-
-
-var calcSpeedColor = function () {
-    var yellow = 12750;
-    var green = 36210;
-    var span = green - yellow;
-
-    //we use the count to determine how many users we have in the workshop
-    var count = 0;
-    //the speedSum determines what color the lamp should display
-    var speedSum = 0;
-    for (var user in userRequests) {
-        if (userRequests.hasOwnProperty(user)) {
-            count++;
-            speedSum += userRequests[user].speed;
-        }
-    }
-    //if we have 10 participants the range of values for speedSum is [-10 ; 10] so 21 possible values and therefore 20 possible steps.
-    var stepSize = Math.floor(span / (count * 2));
-
-    // this value will be the amount of steps to take from the "bottom" which would be 12750 or yellow color code
-    // if count is 10 and speedSum is -4 (meaning 4 more clicked slower than faster) the new value would be 6 meaning 6*stepSize + yellow = color to display
-    var stepsToTake = speedSum + count;
-
-    console.log("Lamp color code for speed will be: " + '' +(stepsToTake * stepSize + yellow));
-}
 
