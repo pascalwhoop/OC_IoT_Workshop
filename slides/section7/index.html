@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>section 7</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../common/css/reveal.css">
+    <link rel="stylesheet" href="../common/css/style.css">
+    <!--    <link rel="stylesheet" href="../common/css/print/pdf.css"/>-->
+
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../common/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+
+</head>
+
+<body>
+
+<div id="logo">
+    <p align="center">
+        <img src="../common/css/Opitz_Logo_V1.svg" alt="Logo" id="logo_img">
+    </p>
+</div>
+
+<div id="copyright">
+    <p align="center">
+        &copy; 2014 OPITZ CONSULTING Deutschland GmbH
+    </p>
+</div>
+
+<div class="reveal">
+
+
+    <div class="slides">
+
+        <section>
+            <h1>Section 7</h1>
+
+            <img src="../common/css/imagebilder.png" alt="Imagebilder">
+
+            <p>
+                Spring Services & DAO
+            </p>
+        </section>
+
+
+        <section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Domain Access Objects (DAO)
+
+                    * Bieten CRUD Operationen auf DB für darüberliegende Services
+                    * abstrahieren DB Operationen für Services
+                    * Typisch: Create, read, update, delete, find
+
+                    Note:
+
+                    Hätte ich auch mit einem Framework machen können, ist mir aber erst später aufgefallen
+
+                    Es gibt z.B. generische DAOs.
+
+                    Für uns nicht weiter von Relevanz, da sehr primitive Aufgaben die nichts mit IoT zu tun haben. Daher
+                    nehmen wir sie einfach als gegeben hin
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    Kurzes Beispiel
+```java
+@Override
+public List<ElroPowerPlug> findByLabel(String label) {
+    Session session = sessionFactory.getCurrentSession();
+    Query query = session.createQuery("from ElroPowerPlug epp where (lower(epp.label) LIKE lower('%'|| :name || '%')) ");
+    query.setParameter("name", label);
+    //Alle Objekttypen holen
+    List<ElroPowerPlug> elroPowerPlugs = query.list();
+    return elroPowerPlugs;
+}
+```
+
+                </script>
+            </section>
+
+        </section>
+
+
+        <section>
+            <section>
+                <h2>Spring Services</h2>
+
+                <p>Was brauchen wir?</p>
+            </section>
+
+            <section>
+                <ul>
+                    <li>Steuern der Stecker (433Mhz JNI Schnittstelle)</li>
+                    <li>Präsenzänderungen Benutzer</li>
+                    <li>CRUD für Benutzer, Steckergruppen, Stecker, NetworkNodes: REST &#8596; DAO</li>
+                    <li style="color: #b57700" class="fragment">(TODO) Auch Anbindung an HUE, Anbindung an externen Wetterdienst / Sonnenstundendienst, andere Webservices</li>
+                </ul>
+            </section>
+        </section>
+
+
+        </div>
+
+        </div>
+
+
+        <script src = "../common/js/head.min.js" ></script>
+        <script src = "../common/js/reveal.js" ></script>
+
+        <script type="text/javascript" src="../common/revealjsConfig.js"></script>
+
+</body>
+</html>

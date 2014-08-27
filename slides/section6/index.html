@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>section 6</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../common/css/reveal.css">
+    <link rel="stylesheet" href="../common/css/style.css">
+    <!--    <link rel="stylesheet" href="../common/css/print/pdf.css"/>-->
+
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../common/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+
+</head>
+
+<body>
+
+<div id="logo">
+    <p align="center">
+        <img src="../common/css/Opitz_Logo_V1.svg" alt="Logo" id="logo_img">
+    </p>
+</div>
+
+<div id="copyright">
+    <p align="center">
+        &copy; 2014 OPITZ CONSULTING Deutschland GmbH
+    </p>
+</div>
+
+<div class="reveal">
+
+
+<div class="slides">
+
+<section>
+    <h1>Section 6</h1>
+
+    <img src="../common/css/imagebilder.png" alt="Imagebilder">
+
+    <p>
+        Kommunikation im IoT
+    </p>
+</section>
+
+<section>
+    <!--Diese Slide soll immer je section eingefügt werden und dann jeweils ein Rahmen um die aktuelle Position gezogen werden (divs unten)s-->
+    <div>
+        <img src="../common/img/oc_iot_architecture.png" alt="" class="stretch"/>
+
+        <div style="
+        position: absolute;
+        width: 80px;
+        height: 60px;
+        border: 10px solid red;
+        top: 45%;
+        left: 35%;"></div>
+
+        <div style="
+        position: absolute;
+        width: 80px;
+        height: 60px;
+        border: 10px solid red;
+        top: 78%;
+        left: 35%;"></div>
+
+        <div style="
+        position: absolute;
+        width: 200px;
+        height:140px;
+        border: 10px solid red;
+        top: 32%;
+        left: 22%;"></div>
+    </div>
+
+    <aside class="notes">
+        <p>Kommunikation im IoT: Was ist interessant? Kommunikation der Backendsysteme untereinander ist kein
+            neues Problem &#8594; nothing new</p>
+
+        <p>Action liegt im "vorderen" Bereich also Ding-Ding Ding-Server Comm</p>
+    </aside>
+</section>
+
+<section>
+
+    <section>
+
+        <h2>Was gibt es denn so?</h2>
+        LTE Advanced Cellular 4G /
+        3G - GPS / GPRS 2G / GSM / EDGE, CDMA, EVDO
+        WEIGHTLESS WIMAX
+        LICENSE-FREE SPECTRUM DASH 7
+        TM
+        WiFi
+        IPv4 IPv6 UDP DTLS RPL Telnet MQTT DDS CoAP XMPP HTTP SOCKETS REST API
+        WAN Wide Area Network - 802.20
+        MAN Metropolitan Area Network -802.16
+        LAN Local Area Network - 802.11
+        PAN Personal Area Network - 802.15
+        BLUETOOTH UWB
+        Z-WAVE ZIGBEE
+        6LoWPAN NFC
+        ANT RFID
+        POWERLINE ETHERNET
+        PRINTE
+
+        <div class="source">Source:
+            http://harborresearch.com/are-you-prepared-for-big-changes-in-the-way-we-will-learn-work-and-innovate/
+        </div>
+
+        <aside class="notes">
+            <p>Eindeutig zu viel um alles zu erfassen</p>
+
+            <p>Das beliebte "es kommt drauf an"</p>
+
+            <p>Aber: Bei konkretem Projekt häufig reduzierung auf wenige mögliche Kandidaten &#8594; again
+                nothing new... zwischen 2-5 Dingen entscheiden halt </p>
+        </aside>
+
+    </section>
+
+
+    <section data-markdown>
+        <script type="text/template">
+            Kann man das ganze irgendwie Strukturieren?
+
+            Note:
+            Brainstorm Whiteboard / Tablet mit screencast / an HDMI angeschlossen?
+            Danach dann harbor research struktur
+        </script>
+
+        <script type="text/javascript"></script>
+    </section>
+
+    <section>
+        <img src="images/harbor_connectivity.png" alt="harbor ressearch infographic" class="stretch"/>
+
+        <div class="source">Source:
+            http://harborresearch.com/are-you-prepared-for-big-changes-in-the-way-we-will-learn-work-and-innovate/
+        </div>
+
+
+        <div class="fragment">
+            <div style="position: absolute;
+        width: 80px;
+        height: 30px;
+        border: 5px solid red;
+        top: 80.5%;
+        left: 44%;"></div>
+
+            <div style="position: absolute;
+        width: 80px;
+        height: 30px;
+        border: 5px solid red;
+        top: 80.5%;
+        left: 19%;"></div>
+
+            <div style="position: absolute;
+        width: 80px;
+        height: 30px;
+        border: 5px solid red;
+        top: 80.5%;
+        left: 38%;"></div>
+        </div>
+
+        <aside class="notes">
+            <p>Struktur vorhanden</p>
+
+            <p>vieles schließt sich gegenseitig aus. z.B. IPv4 oder IPv6 & 433mhz comm, zigbee + wifi nah
+                beieinander (physisch problematisch</p>
+
+            <p>verschiedene Use Cases verschiedene Technologien</p>
+        </aside>
+
+
+    </section>
+
+    <section>
+        <img src="images/osi_cisco.gif" alt="osi_cisco" class="stretch"/>
+
+        <aside class="notes">
+            <pre>
+Layer 7— The application layer: HTTP, IRC, LDAP, Email, Torrent, FTP...
+( This is the layer at which communication partners are identified, quality of service
+is identified, not the application itself. )
+* Hier macht CoAP QoS, security etc.
+
+Layer 6—The presentation layer: TLS
+( This is a layer, usually part of an operating system, that converts incoming and
+outgoing data from one presentation format to another. This layer also manages security issues by providing services such as data encryption and
+compression. It’s sometimes called the syntax layer. )
+
+Layer 5—The session layer: SOCKETS
+(This layer allows applications on different computers to establish, use, and end a
+session/connection. This layer establishes dialog control between the two computers in a session, regulating which
+side transmits, and when and how long it transmits.)
+
+Layer 4—The transport layer:
+TCP, UDP (This layer handles error recognition and recovery, manages the end-to-end control (for
+example, determining whether all packets have arrived) and error-checking. It ensures complete data transfer.)
+
+( Layer 3—The network layer: This layer handles the routing of the data, addresses messages and translates logical
+addresses and names into physical addresses. It also determines the route from the source to the destination
+computer and manages traffic problems (flow control), such as switching, routing, and controlling the congestion of
+data packets. ) Hier lesen wir die ARP Caches aus um die Devices eindeutig zu identifizieren
+
+( Layer 2—The data-link layer: This layer package raw bit from the Physical layer into frames (logical, structures
+packets for data). It is responsible for transferring frames from one computer to another, without errors. After
+sending a frame, it waits for an acknowledgment from the receiving computer. ) Hier hört die 433Mhz Geschichte schon auf
+
+( Layer 1—The physical layer: This layer transmits bits from one computer to another and regulates the transmission of
+a stream of bits over a physical medium. This layer defines how the cable is attached to the network adapter and
+what transmission technique is used to send data over the cable. )  433Mhz Protokoll hier !!
+            </pre>
+        </aside>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h2>Protokolle, Protokolle, Protokolle</h2>
+
+        <p>Lingua Franca des IoT?</p>
+    </section>
+
+
+    <section>
+
+        <p>MQTT, CoAP, DDS, RESTful HTTP, XMPP, ...</p>
+
+        <div class="source">
+            Sources: <a href="http://blogs.cisco.com/ioe/beyond-mqtt-a-cisco-view-on-iot-protocols/">Cisco
+            Blog</a>,
+            <a href="http://electronicdesign.com/embedded/understanding-protocols-behind-internet-things">electronicdesign.com</a>,
+            <a href="http://www.eclipse.org/community/eclipse_newsletter/2014/february/article2.php">eclipse.org</a>
+        </div>
+    </section>
+
+    <section>
+        <h3>MQTT</h3>
+
+        <div class="left">
+            <img src="images/mqtt.gif" alt="mqtt"/>
+        </div>
+
+        <div class="right">
+            <ul>
+                <li>Gedacht zum sammeln von Informationen und weiterleiten an Zentrale Systeme</li>
+                <li>Orientiert sich an Sensoren</li>
+                <li>TCP</li>
+            </ul>
+        </div>
+
+        <aside class="notes">
+            <!--TODO übersetzen-->
+            <!--http://electronicdesign.com/embedded/understanding-protocols-behind-internet-things#MQTT-->
+
+            <pre>
+* MQTT, the Message Queue Telemetry Transport, targets device data collection --> Many send to ONE
+* main purpose is telemetry, or remote monitoring. collect data from many devices and
+  transport that data to the IT infrastructure
+* large networks of small devices monitored and controlled by central entity
+* "slow" (seconds)
+* TCP, Hub-and-spoke is standard
+            </pre>
+        </aside>
+    </section>
+
+    <section>
+        <h4>CoAP</h4>
+        <ul>
+            <li>Quasi Lightweight http</li>
+            <li>UDP, RESTful, datagram based, security, QoS auf</li>
+            <li>Gerade für sehr kleine Things geeignet</li>
+        </ul>
+
+        <aside class="notes">
+           <pre>
+* UDP: QoS auf Application Level im Stack
+* Da Datagram based auf Basis diverser Protokolle (z.B. SMS)
+* CoAP is designed to interoperate with HTTP and the RESTful web at large through simple proxies.
+* CoAP follows a client/server model. Clients make requests to servers, servers send back responses. Clients
+  may GET, PUT, POST and DELETE resources. BUT: The Sensors are the Servers!!
+* Observe Pattern. Client registers with the server and then gets continous responses (sensor -> backend)
+* DTLS (Datagram Transport Layer Security) capable CoAP devices will support RSA and AES or ECC and AES.
+* Im Vergleich zu MQTT: One-To-One nicht many-to-many
+           </pre>
+        </aside>
+    </section>
+
+    <section>
+        <h4>DDS</h4>
+
+        <ul>
+            <li>Ein Device Data-Bus &#8594; eine Middleware / Infrastruktur</li>
+            <li>Ist Thing 2 Thing Kommunikation</li>
+            <li>kein TCP sondern stark konfigurierbar: QoS, reliability</li>
+            <li>Dafür aber kaum Sicherheit</li>
+        </ul>
+
+        <aside class="notes">
+            <pre>
+* Data Distribution Service
+* targets devices that directly use other device data
+* Verteilt Daten von Things zu anderen Things
+* DDS ist wesentlich konfiguierbarer, basiert nicht auf TCP
+    * Multicast, QoS stark konfigurierbar
+* Similar to the way a database controls access to stored data, a data bus controls data access and updates by many simultaneous users.
+  This is exactly what many high-performance devices need to work together as a single system
+* DDS connects devices together into working, distributed applications at physics speeds.
+            </pre>
+        </aside>
+    </section>
+
+    <section>
+        <h4>RESTful</h4>
+
+        <ul>
+            <li>Eine Architektur / ein Paradigma</li>
+            <li>Am weitesten verbreitet auf HTTP Basis aber z.B. auch CoAP möglich</li>
+            <li>Gemeinsam mit SOAP aktuell die zwei wichtigsten Webservice Schnittstellen</li>
+        </ul>
+
+        <aside class="notes">
+            <pre>
+* GET POST PUT DELETE
+* Security wird HTTPS/TLS CoAP/DTLS verwendet
+* Response häufig JSON, kann aber auch XML o.ä. sein. Auch Multimedia möglich
+            </pre>
+        </aside>
+
+    </section>
+
+    <section>
+        <h4>6LoWPAN</h4>
+        
+        <div class="left">
+            <img src="images/6LoWPAN_stack.jpeg" alt=""/>
+        </div>
+
+        <div class="right">
+            <ul>
+                <li>IP6 für Low Power Devices</li>
+                <li>Fokus auf Mesh-Networking</li>
+                <li>Header werden effizient komprimiert um Raum für Nutzdaten zu schaffen</li>
+            </ul>
+        </div>
+
+        <aside class="notes">
+            <pre>
+* Mesh Routing Distanzvektorbasierend vs. IP Routing
+* Hardwareentwicklungen: Distanz Node-Node ausrechnen auf Basis von Signallaufzeit --> Als Grundlage für Distanzvektor berechnungen &
+  gut für sich bewegende Knoten in Meshnetzwerken (z.B. Meshnetzwerk PKW's untereinander)
+            </pre>
+        </aside>
+    </section>
+
+
+</section>
+
+<section>
+
+    <section data-markdown>
+        <script type="text/template">
+            ## Kommunikationswege
+        </script>
+    </section>
+
+    <section>
+        <ul>
+            <li>Neben bekannten wie WiFi und Bluetooth kleinere wie Zigbee, Z-Wave NFC & RFID oder größere wie LTE, 3G,
+                Satellite
+            </li>
+            <li>Theoretisch hunderte Wege möglich, teilweise hochspezialisiert</li>
+            <li>Abhängigkeiten immer: <br>Übertragungsleistung &#8596; Energiebedarf &#8596; Reichweite</li>
+        </ul>
+
+        <aside class="notes">
+            <pre>
+* Wenn Übertragungsleistung + Reichweite hoch --> Energiebedarf hoch
+* - Reichweite -> - Energiebedarf
+* + Reichweite & 0 Energiebdarf -> - Übertragungsleistung
+            </pre>
+        </aside>
+    </section>
+
+
+</section>
+
+<section>
+
+    <section data-markdown>
+        <script type="text/template">
+            ## Was nutzt der Prototyp
+        </script>
+    </section>
+
+    <section>
+        <pre>
+Pi &#8596; Pi:                      RESTful / HTTP (WiFi)
+Smartphone &#8596; Spring Pi:       REST / HTTP (WiFi)
+Spring Pi &#8596; Hue Bridge:       RESTful / HTTP (WiFi / LAN)
+Smartphone &#8596; CEP Pi:          ICMP + ARP (WiFi)
+Hue Bridge &#8596; Hue Lampen:      proprietäres Protokoll (Zigbee)
+Spring Pi &#8596; Funksteckdosen:   proprietäres Protokoll (433Mhz, primitiv)
+        </pre>
+    </section>
+
+    <section data-markdown>
+        <script type="text/template">
+            * Wir haben schon 433Mhz gemacht
+            * ICMP + ARP kommt in CEP (Section 12)
+            * Jetzt REST/HTTP via (W)LAN
+        </script>
+    </section>
+
+    <section data-markdown>
+        <script type="text/template">
+            #### Spring & REST
+
+            * Spring kann nativ REST mittels Spring MVC Framework
+            * Annotations zum definieren von REST Schnittstellen
+            * Aufpassen, schwer REST konform zu halten
+
+            Note:
+
+            Muss nicht sein dass ich REST konform bin, sicher noch einiges besser machbar
+
+            Mit Hilfe von Jackson (java lib) einfache Transformation von JSON <--> Java Objekte
+        </script>
+    </section>
+
+    <section data-markdown>
+        <script type="text/template">
+            #### AngularJS & REST
+
+            * Sehr intuitiv
+            * REST als Standardkommunikation mit Backends
+            * Im Sinne von IoT: Smartphones sehr mächtige Geräte &#8594; TCP, HTTP, REST kein Problem
+        </script>
+    </section>
+
+    <section data-markdown>
+        <script type="text/template">
+            #### Philips Hue & REST
+
+            * Kommunikation nur über LAN
+            * ZigBee und WLan können nicht "zusammen"
+            * Hue bietet REST Schnittstelle, welche somit von Java / JavaScript ... angesprochen werden kann
+
+            Note:
+
+            ZigBee und W-Lan Antenne dürfen nicht zu nah beieinander sein, da die Antennen sich sonst stören. Daher Brücke nur LAN-Zigbee
+        </script>
+    </section>
+
+
+</section>
+
+<section>
+
+    <section data-markdown>
+        <script type="text/template">
+            ## Sample Code
+        </script>
+    </section>
+
+    <section data-markdown>
+        <script type="text/template">
+            Controller definition and mapping
+
+```java
+@Controller       //Defines class as a Spring MVC Controller
+@RequestMapping("/service/groups")
+public class DeviceGroupController {
+//...
+```
+        </script>
+    </section>
+
+    <section data-markdown>
+        <script type="text/template">
+Method mapping to REST URI
+
+```java
+@ResponseBody
+@RequestMapping(value = "/label/{label}", method = RequestMethod.GET)
+public DeviceGroupJSONMessage findByLabel(@PathVariable("label") String label) {
+    return deviceGroupService.getDeviceGroupForJSONByLabel(label);
+}
+//...
+```
+        </script>
+    </section>
+
+
+    <section data-markdown>
+        <script type="text/template">
+            RequestBody JSON to Java Object
+```java
+@ResponseBody
+@RequestMapping(method = RequestMethod.PUT)
+public Integer update(@RequestBody DeviceGroup devicegroup) throws Exception {
+deviceGroupService.update(devicegroup);
+    return devicegroup.getId();
+}
+//...
+```
+        </script>
+    </section>
+
+
+</section>
+
+
+</div>
+
+</div>
+
+
+<script src="../common/js/head.min.js"></script>
+<script src="../common/js/reveal.js"></script>
+
+<script type="text/javascript" src="../common/revealjsConfig.js"></script>
+
+</body>
+</html>

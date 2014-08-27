@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Section 8</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <link rel="stylesheet" href="../common/css/reveal.css">
+    <link rel="stylesheet" href="../common/css/style.css">
+    <!--    <link rel="stylesheet" href="../common/css/print/pdf.css"/>-->
+
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../common/css/zenburn.css">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+
+</head>
+
+<body>
+
+<div id="logo">
+    <p align="center">
+        <img src="../common/css/Opitz_Logo_V1.svg" alt="Logo" id="logo_img">
+    </p>
+</div>
+
+<div id="copyright">
+    <p align="center">
+        &copy; 2014 OPITZ CONSULTING Deutschland GmbH
+    </p>
+</div>
+
+<div class="reveal">
+
+
+    <div class="slides">
+
+        <section>
+            <h1>Section 8</h1>
+
+            <img src="../common/css/imagebilder.png" alt="Imagebilder">
+
+            <p>
+                Mobile Applications
+            </p>
+        </section>
+
+
+        <section>
+            <section>
+                <h2>Was gibt es</h2>
+            </section>
+
+
+            <section>
+                <div class="left">
+                    <h4>Native</h4>
+                    <ul>
+                        <li>Aktuell 3 wichtige Plattformen</li>
+                        <li>Code Sharing fast unmöglich</li>
+                        <li>Performance und technische Möglichkeiten dafür aber am größten</li>
+                    </ul>
+                </div>
+
+                <div class="right">
+                    <h4>Web / Hybrid</h4>
+                    <ul>
+                        <li>Mobile Website entwickeln</li>
+                        <li>gepackt in Phonegap auch in AppStore präsent, kann mit zusätzlichen Funktionen (native
+                            Adapter) angereichert werden
+                        </li>
+                        <li>ein Kernaufwand + kleinere Aufwände für einzelne Plattformen</li>
+                    </ul>
+                </div>
+
+                <aside class="notes">
+                    <p> (-) Native: Das Management muss mehrere Entwicklerteams verwalten, welche alle gleiche Ziele
+                        erreichen
+                        müssen. Neben zusätzlichem Entwicklungsaufwand (da kein Code-Sharing möglich, vieles muss
+                        doppelt
+                        entwickelt werden) auch zusätzlicher Managementaufwand ( z.B. 5 Divisionen 3Mobile 2Native +
+                        Dach
+                        drüber das alles managed. Full Webbasiert könnte 1 große Division mit einzelnen hybrid native
+                        spezialisten sein) --> Haus malen (betriebswirtschaftliche Sicht)</p>
+
+                    <p>
+                        (+) Native: Sehr gerätespezifische Funktionen (iBeacon, Android-intents, Widgets, services)
+                        wesentlich einfacher oder exklusiv für native Applikationen
+                    </p>
+                    <pre>
+                    </pre>
+                </aside>
+            </section>
+
+
+        </section>
+
+
+        <section>
+            <section>
+                <h2>Prototyp</h2>
+            </section>
+
+            <section>
+                <h3>Wir erinnern uns:</h3>
+
+                <p>Logik:</p>
+                <p><img src="../section4/images/angularjs.png" alt=""/></p>
+                <p>to go mobile:</p>
+                <p><img src="../section4/images/ionic-logo-white.svg" alt=""/></p>
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <h3>Prototyp Architektur</h3>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    * **views**: beschreiben UI Elemente
+                    * **controller**: enthalten die Logik welche zur Interaktion mit einzelnen views wichtig ist
+                    * **services**: enthalten geteilte Logik. kommunizieren mit dem Backend & vereinfachen localStorage Interaktion
+                </script>
+            </section>
+
+            <section>
+                <h4>View</h4>
+                <img src="images/view.png" class="stretch" alt=""/></section>
+            <aside class="notes">
+                <p>klassisches HTML mit einigen eigenen tags wie <pre>ion-header-bar</pre> und attributen wie <pre>ng-model</pre></p>
+            </aside>
+            <section>
+                <h4>Controller</h4>
+                <img src="images/controller.png" class="stretch" alt=""/></section>
+            <aside class="notes">
+                <p>controller sind module welche abhängigkeiten zueinander services haben können, deren Funktionalitäten sie nutzen</p>
+                <p>das <pre>$scope</pre> objekt wird im HTML mittels {{somevar}} zur Verfügung gestellt </p>
+            </aside>
+            <section>
+                <h4>Service</h4>
+                <img src="images/service.png"class="stretch"  alt=""/>
+                <aside class="notes">
+                    <p>enthalten Logik, welche für Controller zur Verfügung gestellt werden kann.</p>
+                    <p>können voneinander abhängig sein</p>
+                    <p>beachte: $http oder $resource</p>
+                </aside>
+            </section>
+
+            <section>
+                <h4>UI</h4>
+                <img src="images/ui.png" alt="" class="stretch" style="border: 2px solid black;"/>
+            </section>
+
+        </section>
+
+
+
+    </div>
+
+</div>
+
+
+<script src="../common/js/head.min.js"></script>
+<script src="../common/js/reveal.js"></script>
+
+<script type="text/javascript" src="../common/revealjsConfig.js"></script>
+
+</body>
+</html>

@@ -4,7 +4,7 @@ var log = bunyan.createLogger({
     name: 'ratingLogger',
     streams: [
         {
-            path: './log/ratingLog.log',
+            path: './log/' + new Date().getMonth() + "-" + new Date().getDate() + '_ratingLog.log',
             type: 'file'
         }
     ]
